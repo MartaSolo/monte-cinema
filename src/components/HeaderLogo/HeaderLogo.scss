@@ -1,0 +1,7 @@
+@use "../../scss/settings/mixins" as m;
+
+.logo__link {
+  @include m.mediumScreen {
+    padding-left: 48px;
+  }
+}

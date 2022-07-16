@@ -1,0 +1,16 @@
+@use "../../scss/settings/mixins" as m;
+
+.header {
+  border: 1px solid blue;
+  height: 98px;
+  .container {
+    border: 1px solid green;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include m.mediumScreen {
+      justify-content: space-between;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@use "../../scss/settings/colors" as c;
+@use "../../scss/settings/fonts" as f;
+@use "../../scss/settings/mixins" as m;
+
+.header__text--content {
+  display: none;
+  @include m.mediumScreen {
+    display: inline-block;
+    font-family: f.$fontSecondary;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: c.$colorTitlePrimary;
+    padding-right: 48px;
+    .header__text--heart {
+      color: c.$colorAccent;
+      width: 150%;
+    }
+  }
+}

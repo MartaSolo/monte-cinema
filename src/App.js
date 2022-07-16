@@ -1,7 +1,12 @@
+import Register from "./pages/Register";
 import "./App.scss";
 
-function App() {
-  return <div>Monte Cinema</div>;
-}
+const App = () => {
+  return (
+    <>
+      <Register />
+    </>
+  );
+};
 
 export default App;

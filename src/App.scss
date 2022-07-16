@@ -1,6 +1,24 @@
 // generic
 @use "./scss/generic/reset";
 
+@use "./scss/settings/fonts" as f;
+@use "./scss/settings/colors" as c;
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: palegoldenrod;
+  font-family: f.$fontPrimary;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
 }
