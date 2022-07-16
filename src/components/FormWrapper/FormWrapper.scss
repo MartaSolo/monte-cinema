@@ -1,0 +1,15 @@
+@use "../../scss/settings/colors" as c;
+@use "../../scss/settings/fonts" as f;
+@use "../../scss/settings/mixins" as m;
+
+.register_wrapper {
+  background-color: blue;
+  width: 100%;
+  padding: 24px;
+  @include m.mediumScreen {
+    box-shadow: 0px 4px 22px c.$colorShadow;
+    border-radius: 24px;
+    height: 500px;
+    padding: 64px;
+  }
+}

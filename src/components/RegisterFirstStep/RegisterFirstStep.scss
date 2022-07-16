@@ -1,0 +1,15 @@
+@use "../../scss/settings/colors" as c;
+@use "../../scss/settings/fonts" as f;
+@use "../../scss/settings/mixins" as m;
+
+.register__step--first {
+  height: 100%;
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @include m.mediumScreen {
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,25 @@
+@use "../../scss/settings/colors" as c;
+@use "../../scss/settings/fonts" as f;
+@use "../../scss/settings/mixins" as m;
+
+.register__title {
+  font-family: f.$fontTitle;
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  text-align: center;
+  padding-bottom: 20px;
+  @include m.mediumScreen {
+    font-size: 4rem;
+    text-align: left;
+  }
+  @include m.largeScreen {
+    font-size: 5rem;
+  }
+  .register__title--title {
+    color: c.$colorTitlePrimary;
+  }
+  .register__title--subtitle {
+    color: c.$colorTitleSecondary;
+  }
+}

@@ -1,0 +1,22 @@
+@use "../../scss/settings/colors" as c;
+@use "../../scss/settings/fonts" as f;
+@use "../../scss/settings/mixins" as m;
+
+.register__step--success {
+  height: 100%;
+  padding: 32px;
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  .register__step--message {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.3;
+    .register__user--email {
+      font-weight: 700;
+    }
+  }
+}

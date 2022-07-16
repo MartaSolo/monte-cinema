@@ -1,0 +1,29 @@
+@use "../../scss/settings/mixins" as m;
+
+.register {
+  background-color: palegoldenrod;
+  height: calc(100vh - 98px);
+  & .container {
+    background-color: palegreen;
+    height: 100%;
+    .register__form {
+      //   background-color: palevioletred;
+      height: 100%;
+      @include m.mediumScreen {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .register__step {
+        border: 2px solid red;
+        background-color: paleturquoise;
+        height: 100%;
+        width: 100%;
+        @include m.mediumScreen {
+          width: 620px;
+        }
+      }
+    }
+  }
+}
