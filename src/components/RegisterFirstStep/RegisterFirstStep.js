@@ -2,20 +2,50 @@ import { useState } from "react";
 import RegisterStepTitle from "../RegisterStepTitle";
 import FormWrapper from "../FormWrapper";
 import Input from "../Input";
+import regex from "../../utils/regex";
 import "./RegisterFirstStep.scss";
 
 const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
-  const [emailError, setEmailError] = useState("email address is not correct");
   // console.log("newUser.email", newUser.email);
   // console.log("newUser.password", newUser.password);
+  // console.log("newUser.password.length", newUser.password.length);
+
+  const [emailError, setEmailError] = useState("");
+
   const [passwordError, setPasswordError] = useState({
     charNum: null,
     oneLetter: null,
     oneDigit: null,
   });
+  // console.log("passwordError", passwordError);
+
+  const [passwordType, setPasswordType] = useState("password");
 
   const handleChange = (e) => {
     setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleEmailBlur = () => {
+    if (newUser.email.length === 0 || !regex.email.test(newUser.email)) {
+      setEmailError("Please enter correct email address");
+    }
+  };
+
+  const handlePassrowdBlur = () => {
+    setPasswordError({ charNum: true, oneLetter: true, oneDigit: true });
+    if (newUser.password.length === 8) {
+      setPasswordError((prev) => ({ ...prev, charNum: false }));
+    }
+    if (regex.passOneLetter.test(newUser.password)) {
+      setPasswordError((prev) => ({ ...prev, oneLetter: false }));
+    }
+    if (regex.passOneDigit.test(newUser.password)) {
+      setPasswordError((prev) => ({ ...prev, oneDigit: false }));
+    }
+  };
+
+  const divEmailClassName = () => {
+    return emailError ? "input email error" : "input email";
   };
 
   const passErrorClassName = (value) => {
@@ -37,7 +67,7 @@ const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
       <FormWrapper>
         <div className="inputs">
           <Input
-            divClassName="input email"
+            divClassName={divEmailClassName()}
             labelClassName="input__label email"
             htmlFor="email"
             label="email"
@@ -48,19 +78,22 @@ const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
             placeholder="email@monterail.com"
             value={newUser.email}
             onChange={handleChange}
+            onBlur={handleEmailBlur}
           />
+          <div className="email__error">{emailError}</div>
           <Input
             divClassName="input password"
             labelClassName="input__label password"
             htmlFor="password"
             label="password"
             inputClassName="input__input password"
-            inputType="password"
+            inputType={passwordType}
             id="password"
             name="password"
             placeholder="Enter your password"
             value={newUser.password}
             onChange={handleChange}
+            onBlur={handlePassrowdBlur}
           />
           <div className="password__errors">
             <p className={passErrorClassName(passwordError.charNum)}>
