@@ -11,22 +11,20 @@ import "./RegisterFirstStep.scss";
 const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
   // console.log("newUser.email", newUser.email);
   // console.log("newUser.password", newUser.password);
-  // console.log("newUser.password.length", newUser.password.length);
 
   const [emailError, setEmailError] = useState("");
-
   const [passwordError, setPasswordError] = useState({
     charNum: null,
     oneLetter: null,
     oneDigit: null,
   });
-  // console.log("passwordError", passwordError);
-
   const [passwordType, setPasswordType] = useState("password");
-  // console.log("passwordType", passwordType);
 
   const handleChange = (e) => {
     setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (e.target.value !== "") {
+      setEmailError("");
+    }
   };
 
   const handleEmailBlur = () => {
@@ -37,7 +35,7 @@ const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
 
   const handlePasswordBlur = () => {
     setPasswordError({ charNum: true, oneLetter: true, oneDigit: true });
-    if (newUser.password.length === 8) {
+    if (newUser.password.length >= 8) {
       setPasswordError((prev) => ({ ...prev, charNum: false }));
     }
     if (regex.passOneLetter.test(newUser.password)) {
@@ -46,6 +44,10 @@ const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
     if (regex.passOneDigit.test(newUser.password)) {
       setPasswordError((prev) => ({ ...prev, oneDigit: false }));
     }
+  };
+
+  const handleNextStep = () => {
+    setStep((prev) => prev + 1);
   };
 
   const togglePasswordType = () => {
@@ -59,20 +61,13 @@ const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
   };
 
   const passErrorClassName = (value) => {
-    switch (value) {
-      case null:
-        return "password__error";
-      case true:
-        return "password__error error";
-      case false:
-        return "password__error correct";
-      default:
-        return "password__error";
+    if (value === false) {
+      return "password__error correct";
+    } else if (value === true) {
+      return "password__error error";
+    } else {
+      return "password__error";
     }
-  };
-
-  const handleNextStep = () => {
-    setStep((prev) => prev + 1);
   };
 
   const disableButton = () => {

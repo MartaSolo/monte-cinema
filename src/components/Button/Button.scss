@@ -7,15 +7,22 @@
   width: 327px;
   border-radius: 64px;
   background-color: c.$colorAccent;
+  border: 5px solid c.$colorAccent;
   color: c.$colorBackgroundPrimary;
   font-family: f.$fontSecondary;
   font-size: 1.2rem;
   line-height: 100%;
-  border: none;
   cursor: pointer;
   margin-top: 8px;
   &:disabled {
     cursor: not-allowed;
+  }
+  &:hover {
+    background-color: c.$colorAccentHover;
+    border: 5px solid c.$colorAccentHover;
+  }
+  &:active {
+    border: 5px solid c.$colorAccentLight;
   }
   @include m.mediumScreen {
     width: 228px;
