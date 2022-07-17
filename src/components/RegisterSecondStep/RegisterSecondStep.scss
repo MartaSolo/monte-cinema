@@ -4,12 +4,17 @@
 
 .register__step--second {
   height: 100%;
-  background-color: yellow;
+  // background-color: yellow;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
   @include m.mediumScreen {
     align-items: flex-start;
+  }
+  .inputs {
+    border: 2px solid violet;
+    width: 100%;
+    max-width: 472px;
   }
 }
