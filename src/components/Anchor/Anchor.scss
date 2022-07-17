@@ -2,21 +2,21 @@
 @use "../../scss/settings/fonts" as f;
 @use "../../scss/settings/mixins" as m;
 
-.button {
+.anchor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 56px;
   width: 327px;
   border-radius: 64px;
-  background-color: c.$colorAccent;
-  color: c.$colorBackgroundPrimary;
+  background-color: c.$colorBackgroundPrimary;
+  color: c.$colorAccent;
   font-family: f.$fontSecondary;
   font-size: 1.2rem;
   line-height: 100%;
   border: none;
   cursor: pointer;
   margin-top: 8px;
-  &:disabled {
-    cursor: not-allowed;
-  }
   @include m.mediumScreen {
     width: 228px;
   }

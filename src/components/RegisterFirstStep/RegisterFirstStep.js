@@ -3,6 +3,7 @@ import RegisterStepTitle from "../RegisterStepTitle";
 import FormWrapper from "../FormWrapper";
 import Input from "../Input";
 import Button from "../Button";
+import Anchor from "../Anchor";
 import { ReactComponent as EyeIcon } from "../../assets/eye.svg";
 import regex from "../../utils/regex";
 import "./RegisterFirstStep.scss";
@@ -145,6 +146,7 @@ const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
             onClick={handleNextStep}
             disabled={disableButton()}
           />
+          <Anchor href="#" className="anchor toLogin" text="Log in instead" />
         </div>
       </FormWrapper>
     </div>

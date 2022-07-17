@@ -44,3 +44,10 @@
     }
   }
 }
+
+.buttons {
+  @include m.mediumScreen {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
