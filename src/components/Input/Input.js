@@ -9,6 +9,7 @@ const Input = ({
   inputType,
   id,
   name,
+  placeholder,
   value,
   onChange,
   onBlur,
@@ -23,6 +24,7 @@ const Input = ({
         type={inputType}
         id={id}
         name={name}
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
         onBlur={onBlur}

@@ -5,12 +5,14 @@ import Input from "../Input";
 import "./RegisterFirstStep.scss";
 
 const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
-  const [emailError, setEmailError] = useState("");
+  const [emailError, setEmailError] = useState("email address is not correct");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleChange = (e) => {
     setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log("newUser.email", newUser.email);
+  // console.log("newUser.email", newUser.email);
+  console.log("newUser.password", newUser.password);
 
   return (
     <div className="register__step--first">
@@ -26,7 +28,21 @@ const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
             inputType="email"
             id="email"
             name="email"
+            placeholder="email@monterail.com"
             value={newUser.email}
+            onChange={handleChange}
+          />
+          <Input
+            divClassName="input password"
+            labelClassName="input__label password"
+            htmlFor="password"
+            label="password"
+            inputClassName="input__input password"
+            inputType="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            value={newUser.password}
             onChange={handleChange}
           />
         </div>

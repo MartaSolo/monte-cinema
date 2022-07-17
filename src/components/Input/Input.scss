@@ -1,0 +1,36 @@
+@use "../../scss/settings/colors" as c;
+@use "../../scss/settings/fonts" as f;
+@use "../../scss/settings/mixins" as m;
+
+.input {
+  border: 1px solid orange;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+  .input__label {
+    font-family: f.$fontSecondary;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 18px;
+    color: c.$colorAccentLight;
+    text-transform: uppercase;
+    padding: 8px 0 8px 0;
+  }
+  .input__input {
+    height: 56px;
+    width: 100%;
+    max-width: 472px;
+    border-radius: 8px;
+    background-color: c.$colorInputBackground;
+    padding: 16px;
+    border: 2px solid c.$colorBackgroundPrimary;
+    &:hover {
+      background-color: c.$colorInputBgHover;
+    }
+    &:focus {
+      background-color: c.$colorInputActiveBg;
+      outline: none;
+      border: 2px solid c.$colorInputActiveBorder;
+    }
+  }
+}
