@@ -40,3 +40,12 @@
     padding-bottom: 4px;
   }
 }
+
+.input.password {
+  position: relative;
+  svg {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+  }
+}

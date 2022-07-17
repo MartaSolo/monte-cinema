@@ -13,6 +13,7 @@ const Input = ({
   value,
   onChange,
   onBlur,
+  children,
 }) => {
   return (
     <div className={divClassName}>
@@ -28,7 +29,8 @@ const Input = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-      ></input>
+      />
+      {children}
     </div>
   );
 };
