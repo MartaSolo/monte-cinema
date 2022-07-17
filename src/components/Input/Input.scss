@@ -33,8 +33,10 @@
   }
 }
 
-.input.email {
-  padding-bottom: 24px;
+.input.email,
+.input.name,
+.input.surname {
+  padding-bottom: 26px;
   &.error {
     padding-bottom: 4px;
   }

@@ -18,3 +18,20 @@
     max-width: 472px;
   }
 }
+
+.name__error,
+.surname__error {
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 170%;
+  letter-spacing: 0.04em;
+  padding-left: 5px;
+  color: c.$colorAccent;
+}
+
+.buttons {
+  @include m.mediumScreen {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}

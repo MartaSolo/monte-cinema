@@ -10,8 +10,8 @@ const Register = () => {
   const [newUser, setNewUser] = useState({
     email: "",
     password: "",
-    firstName: "",
-    lastName: "",
+    name: "",
+    surname: "",
     dateOfBirth: "",
   });
   return (

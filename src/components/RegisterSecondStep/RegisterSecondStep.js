@@ -8,35 +8,39 @@ import regex from "../../utils/regex";
 import "./RegisterSecondStep.scss";
 
 const RegisterSecondStep = ({ step, setStep, newUser, setNewUser }) => {
-  const [firstNameError, setFirstNameError] = useState("");
-  const [lastNameError, setLastNameError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [surnameError, setSurnameError] = useState("");
 
   const handleChange = (e) => {
     setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    console.log(e.target.name, e.target.value);
     // przemyśleć;
     if (e.target.value !== "") {
-      setFirstNameError("");
+      setNameError("");
     }
     if (e.target.value !== "") {
-      setLastNameError("");
+      setSurnameError("");
     }
   };
 
-  const handleFirstNameBlur = () => {
-    if (newUser.firstName.lenght < 2 || !regex.name.test(newUser.firstName)) {
-      setFirstNameError("Please enter correct first name");
+  const handleNameBlur = () => {
+    if (newUser.name.lenght < 2 || !regex.name.test(newUser.name)) {
+      setNameError("Please enter correct first name");
     }
   };
-  const handleLastNameBlur = () => {
-    if (newUser.firstName.lenght < 2 || !regex.name.test(newUser.firstName)) {
-      setLastNameError("Please enter correct last name");
+
+  const handleSurnameBlur = () => {
+    if (newUser.surname.lenght < 2 || !regex.name.test(newUser.surname)) {
+      setSurnameError("Please enter correct last name");
     }
   };
-  const divFirstNameClassName = () => {
-    return firstNameError ? "input firstname error" : "input firstname";
+
+  const divNameClassName = () => {
+    return nameError ? "input name error" : "input name";
   };
-  const divLastNameClassName = () => {
-    return lastNameError ? "input lastname error" : "input lastname";
+
+  const divSurnameClassName = () => {
+    return surnameError ? "input surname error" : "input surname";
   };
 
   return (
@@ -45,36 +49,36 @@ const RegisterSecondStep = ({ step, setStep, newUser, setNewUser }) => {
       <FormWrapper>
         <div className="inputs">
           <Input
-            divClassName={divFirstNameClassName()}
-            labelClassName="input__label firstname"
-            htmlFor="firstname"
-            label="firstname"
-            inputClassName="input__input firstname"
+            divClassName={divNameClassName()}
+            labelClassName="input__label name"
+            htmlFor="name"
+            label="First name"
+            inputClassName="input__input name"
             inputType="text"
-            id="firstname"
-            name="firstname"
+            id="name"
+            name="name"
             placeholder="e.g. Jessica"
-            value={newUser.firstName}
+            value={newUser.name}
             onChange={handleChange}
-            onBlur={handleFirstNameBlur}
+            onBlur={handleNameBlur}
           />
-          <div className="firstname__error">{firstNameError}</div>
+          <div className="name__error">{nameError}</div>
 
           <Input
-            divClassName={divLastNameClassName()}
-            labelClassName="input__label lastname"
-            htmlFor="lastname"
-            label="lastname"
-            inputClassName="input__input lastname"
+            divClassName={divSurnameClassName()}
+            labelClassName="input__label surname"
+            htmlFor="surname"
+            label="Last name"
+            inputClassName="input__input surname"
             inputType="text"
-            id="lastname"
-            name="lastname"
+            id="surname"
+            name="surname"
             placeholder="e.g. Walton"
-            value={newUser.lastName}
+            value={newUser.surname}
             onChange={handleChange}
-            onBlur={handleLastNameBlur}
+            onBlur={handleSurnameBlur}
           />
-          <div className="lastname__error">{lastNameError}</div>
+          <div className="surname__error">{surnameError}</div>
         </div>
       </FormWrapper>
     </div>
