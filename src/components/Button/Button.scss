@@ -1,0 +1,20 @@
+@use "../../scss/settings/colors" as c;
+@use "../../scss/settings/fonts" as f;
+@use "../../scss/settings/mixins" as m;
+
+.button {
+  height: 56px;
+  width: 327px;
+  border-radius: 64px;
+  background-color: c.$colorAccent;
+  color: c.$colorBackgroundPrimary;
+  font-family: f.$fontSecondary;
+  font-size: 1.2rem;
+  line-height: 100%;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

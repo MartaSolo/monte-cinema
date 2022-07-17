@@ -12,6 +12,11 @@
   @include m.mediumScreen {
     align-items: flex-start;
   }
+  .inputs {
+    border: 2px solid violet;
+    width: 100%;
+    max-width: 472px;
+  }
 }
 
 .email__error {

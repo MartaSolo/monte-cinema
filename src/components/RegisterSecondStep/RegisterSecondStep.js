@@ -1,5 +1,6 @@
 import RegisterStepTitle from "../RegisterStepTitle";
 import FormWrapper from "../FormWrapper";
+import Button from "../Button";
 import "./RegisterSecondStep.scss";
 
 const RegisterSecondStep = ({ step }) => {
