@@ -6,7 +6,7 @@
   border: 1px solid orange;
   display: flex;
   flex-direction: column;
-  padding-bottom: 24px;
+  padding-bottom: 32px;
   .input__label {
     font-family: f.$fontSecondary;
     font-size: 0.8rem;
@@ -33,4 +33,8 @@
       border: 2px solid c.$colorInputActiveBorder;
     }
   }
+}
+
+.input.password {
+  padding-bottom: 8px;
 }

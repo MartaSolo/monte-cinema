@@ -6,13 +6,30 @@ import "./RegisterFirstStep.scss";
 
 const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
   const [emailError, setEmailError] = useState("email address is not correct");
-  const [passwordError, setPasswordError] = useState("");
+  // console.log("newUser.email", newUser.email);
+  // console.log("newUser.password", newUser.password);
+  const [passwordError, setPasswordError] = useState({
+    charNum: null,
+    oneLetter: null,
+    oneDigit: null,
+  });
 
   const handleChange = (e) => {
     setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  // console.log("newUser.email", newUser.email);
-  console.log("newUser.password", newUser.password);
+
+  const passErrorClassName = (value) => {
+    switch (value) {
+      case null:
+        return "password__error";
+      case true:
+        return "password__error error";
+      case false:
+        return "password__error correct";
+      default:
+        return "password__error";
+    }
+  };
 
   return (
     <div className="register__step--first">
@@ -45,6 +62,17 @@ const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
             value={newUser.password}
             onChange={handleChange}
           />
+          <div className="password__errors">
+            <p className={passErrorClassName(passwordError.charNum)}>
+              At least 8 characters
+            </p>
+            <p className={passErrorClassName(passwordError.oneLetter)}>
+              At least one letter
+            </p>
+            <p className={passErrorClassName(passwordError.oneDigit)}>
+              At least one digit
+            </p>
+          </div>
         </div>
       </FormWrapper>
     </div>
