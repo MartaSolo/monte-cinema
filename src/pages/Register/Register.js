@@ -15,6 +15,7 @@ const Register = () => {
     dateOfBirth: "",
     privPolicy: false,
   });
+
   return (
     <>
       <Header />
