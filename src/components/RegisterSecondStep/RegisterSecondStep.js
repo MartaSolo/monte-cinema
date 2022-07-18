@@ -15,7 +15,6 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
     underage: null,
     format: "",
   });
-  // console.log("newUser.privPolicy", newUser.privPolicy);
 
   const handleChange = (e) => {
     setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -59,18 +58,9 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
     const birthDay = moment(newUser.dateOfBirth, "DD/MM/YYYY");
     const dateNow = moment();
     const age = dateNow.diff(birthDay, "years");
-    console.log("age", age);
     if (age >= 18) {
       setDateOfBirthError((prev) => ({ ...prev, underage: false }));
     }
-  };
-
-  const divNameClassName = () => {
-    return nameError ? "input name error" : "input name";
-  };
-
-  const divSurnameClassName = () => {
-    return surnameError ? "input surname error" : "input surname";
   };
 
   const dateOfBirthErrorClassName = (value) => {
@@ -81,10 +71,6 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
     } else {
       return "dateofbirth__error";
     }
-  };
-
-  const handleNextStep = () => {
-    setStep((prev) => prev + 1);
   };
 
   const disableButton = () => {
@@ -110,7 +96,7 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
       <FormWrapper>
         <div className="inputs">
           <Input
-            divClassName={divNameClassName()}
+            divClassName={nameError ? "input name error" : "input name"}
             labelClassName="input__label name"
             htmlFor="name"
             label="First name"
@@ -126,7 +112,9 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
           <div className="name__error">{nameError}</div>
 
           <Input
-            divClassName={divSurnameClassName()}
+            divClassName={
+              surnameError ? "input surname error" : "input surname"
+            }
             labelClassName="input__label surname"
             htmlFor="surname"
             label="Last name"
@@ -200,7 +188,7 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
             className="button next"
             type="button"
             text="Next step"
-            onClick={handleNextStep}
+            onClick={() => setStep((prev) => prev + 1)}
             disabled={disableButton()}
           />
           <Anchor href="#" className="anchor toLogin" text="Log in instead" />

@@ -2,7 +2,7 @@ import "./FormWrapper.scss";
 
 const FormWrapper = ({ children }) => {
   return (
-    <div className="register_wrapper">
+    <div className="register__wrapper">
       <>{children}</>
     </div>
   );

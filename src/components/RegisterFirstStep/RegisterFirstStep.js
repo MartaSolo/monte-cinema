@@ -43,18 +43,10 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
     }
   };
 
-  const handleNextStep = () => {
-    setStep((prev) => prev + 1);
-  };
-
   const togglePasswordType = () => {
     return passwordType === "password"
       ? setPasswordType("text")
       : setPasswordType("password");
-  };
-
-  const divEmailClassName = () => {
-    return emailError ? "input email error" : "input email";
   };
 
   const passErrorClassName = (value) => {
@@ -88,7 +80,7 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
       <FormWrapper>
         <div className="inputs">
           <Input
-            divClassName={divEmailClassName()}
+            divClassName={emailError ? "input email error" : "input email"}
             labelClassName="input__label email"
             htmlFor="email"
             label="email"
@@ -135,7 +127,7 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
             className="button next"
             type="button"
             text="Next step"
-            onClick={handleNextStep}
+            onClick={() => setStep((prev) => prev + 1)}
             disabled={disableButton()}
           />
           <Anchor href="#" className="anchor toLogin" text="Log in instead" />
