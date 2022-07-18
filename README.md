@@ -6,7 +6,7 @@ HTML5, CSS3, Sass, JavaScript (ES6), Moment JS, React v18.
 
 ## View Demo:
 
-https://martasolo.github.io/oddaj-rzeczy/
+https://martasolo-monte-cinema.netlify.app/
 
 ## Available Scripts
 
