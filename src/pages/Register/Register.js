@@ -13,6 +13,7 @@ const Register = () => {
     name: "",
     surname: "",
     dateOfBirth: "",
+    provPolicy: "",
   });
   return (
     <>

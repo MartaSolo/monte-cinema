@@ -29,6 +29,23 @@
   color: c.$colorAccent;
 }
 
+.dateofbirth__errors {
+  .dateofbirth__error {
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 170%;
+    letter-spacing: 0.04em;
+    padding-left: 5px;
+    color: c.$colorTitlePrimary;
+    &.error {
+      color: c.$colorAccent;
+    }
+    &.correct {
+      color: c.$colorInputCorrect;
+    }
+  }
+}
+
 .buttons {
   @include m.mediumScreen {
     display: flex;
