@@ -49,3 +49,49 @@
     right: 5%;
   }
 }
+
+.input.privpolicy {
+  // border: 2px solid darkcyan;
+  flex-direction: row;
+  padding-bottom: 20px;
+  .input__label.privpolicy {
+    font-family: f.$fontPrimary;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: c.$colorCheckboxText;
+    text-transform: none;
+    position: relative;
+    margin-left: 40px;
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 1px solid c.$colorInputPlaceholder;
+      border-radius: 6px;
+      top: 9%;
+      left: -19%;
+      cursor: pointer;
+    }
+    .privpolicy--link {
+      color: c.$colorTextPrimary;
+      text-decoration: underline;
+    }
+    &.checked {
+      &::before {
+        background-image: url(../../assets/checked.svg);
+        background-color: c.$colorInputCorrect;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+  .input__input.privpolicy {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+}

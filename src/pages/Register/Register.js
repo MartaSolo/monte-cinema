@@ -13,7 +13,7 @@ const Register = () => {
     name: "",
     surname: "",
     dateOfBirth: "",
-    provPolicy: "",
+    privPolicy: false,
   });
   return (
     <>
@@ -24,7 +24,6 @@ const Register = () => {
             <div className="register__step">
               {step === 1 && (
                 <RegisterFirstStep
-                  step={step}
                   setStep={setStep}
                   newUser={newUser}
                   setNewUser={setNewUser}
@@ -32,7 +31,6 @@ const Register = () => {
               )}
               {step === 2 && (
                 <RegisterSecondStep
-                  step={step}
                   setStep={setStep}
                   newUser={newUser}
                   setNewUser={setNewUser}

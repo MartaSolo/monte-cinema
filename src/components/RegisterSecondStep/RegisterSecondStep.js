@@ -8,16 +8,20 @@ import Anchor from "../Anchor";
 import regex from "../../utils/regex";
 import "./RegisterSecondStep.scss";
 
-const RegisterSecondStep = ({ step, setStep, newUser, setNewUser }) => {
+const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
   const [nameError, setNameError] = useState("");
   const [surnameError, setSurnameError] = useState("");
   const [dateOfBirthError, setDateOfBirthError] = useState({
     underage: null,
     format: "",
   });
+  // console.log("newUser.privPolicy", newUser.privPolicy);
 
   const handleChange = (e) => {
     setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (e.target.name === "privPolicy") {
+      setNewUser((prev) => ({ ...prev, privPolicy: e.target.checked }));
+    }
     if (e.target.name === "name" && e.target.value !== "") {
       setNameError("");
     }
@@ -88,6 +92,7 @@ const RegisterSecondStep = ({ step, setStep, newUser, setNewUser }) => {
       !newUser.name ||
       !newUser.surname ||
       !newUser.dateOfBirth ||
+      !newUser.privPolicy ||
       nameError ||
       surnameError ||
       dateOfBirthError.underage ||
@@ -162,10 +167,32 @@ const RegisterSecondStep = ({ step, setStep, newUser, setNewUser }) => {
                   : "dateofbirth__error"
               }
             >
-              {/* <p className="dateofbirth__error error"> */}
               {dateOfBirthError.format}
             </p>
           </div>
+          <Input
+            divClassName="input privpolicy"
+            labelClassName={
+              newUser.privPolicy
+                ? "input__label privpolicy checked"
+                : "input__label privpolicy"
+            }
+            htmlFor="privpolicy"
+            label={
+              <span>
+                I accept{" "}
+                <a href="#" className="privpolicy--link">
+                  Privacy Policy
+                </a>
+              </span>
+            }
+            inputClassName="input__input privpolicy"
+            inputType="checkbox"
+            id="privpolicy"
+            name="privPolicy"
+            value={newUser.privPolicy}
+            onChange={handleChange}
+          />
         </div>
 
         <div className="buttons">

@@ -8,10 +8,7 @@ import { ReactComponent as EyeIcon } from "../../assets/eye.svg";
 import regex from "../../utils/regex";
 import "./RegisterFirstStep.scss";
 
-const RegisterFirstStep = ({ step, setStep, newUser, setNewUser }) => {
-  // console.log("newUser.email", newUser.email);
-  // console.log("newUser.password", newUser.password);
-
+const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState({
     charNum: null,
