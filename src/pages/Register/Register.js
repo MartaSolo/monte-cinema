@@ -36,7 +36,7 @@ const Register = () => {
                   setNewUser={setNewUser}
                 />
               )}
-              {step === 3 && <RegisterSuccess />}
+              {step === 3 && <RegisterSuccess newUser={newUser} />}
             </div>
           </form>
         </div>

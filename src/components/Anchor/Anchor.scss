@@ -22,3 +22,15 @@
     margin-top: 16px;
   }
 }
+
+.anchor.homepage {
+  background-color: c.$colorAccent;
+  color: c.$colorBackgroundPrimary;
+  &:hover {
+    background-color: c.$colorAccentHover;
+    border: 5px solid c.$colorAccentHover;
+  }
+  &:active {
+    border: 5px solid c.$colorAccentLight;
+  }
+}
