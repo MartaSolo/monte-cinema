@@ -43,6 +43,12 @@
     &.correct {
       color: c.$colorInputCorrect;
     }
+    &:nth-child(2) {
+      padding-bottom: 26px;
+      &.error {
+        padding-bottom: 4px;
+      }
+    }
   }
 }
 

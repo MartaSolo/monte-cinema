@@ -155,7 +155,14 @@ const RegisterSecondStep = ({ step, setStep, newUser, setNewUser }) => {
             <p className={dateOfBirthErrorClassName(dateOfBirthError.underage)}>
               You should be minimum 18 years old
             </p>
-            <p className="dateofbirth__error error">
+            <p
+              className={
+                dateOfBirthError.format
+                  ? "dateofbirth__error error"
+                  : "dateofbirth__error"
+              }
+            >
+              {/* <p className="dateofbirth__error error"> */}
               {dateOfBirthError.format}
             </p>
           </div>
