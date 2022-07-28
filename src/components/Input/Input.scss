@@ -32,6 +32,12 @@
   }
 }
 
+.input.error {
+  .input__input {
+    border: 2px solid c.$colorAccentLight;
+  }
+}
+
 .input.email,
 .input.name,
 .input.surname {
@@ -43,16 +49,18 @@
 
 .input.password {
   position: relative;
-  svg {
+  .password__button {
+    cursor: pointer;
+    width: 44px;
+    height: 50px;
+    background-color: transparent;
     position: absolute;
-    top: 50%;
-    right: 5%;
-  }
-}
-
-.input.error {
-  .input__input {
-    border: 2px solid c.$colorAccentLight;
+    top: 41%;
+    right: 3%;
+    border: none;
+    svg {
+      transform: translate(0%, 10%);
+    }
   }
 }
 

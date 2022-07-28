@@ -116,7 +116,16 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
             value={newUser.password}
             onChange={handleChange}
             onBlur={handlePasswordBlur}
-            children={<EyeIcon onClick={togglePasswordType} />}
+            children={
+              <button
+                type="button"
+                className="password__button"
+                onClick={togglePasswordType}
+              >
+                <EyeIcon />
+              </button>
+            }
+            // children={<EyeIcon onClick={togglePasswordType} />}
           />
           <div className="password__errors">
             <p className={passErrorClassName(passwordError.charNum)}>
