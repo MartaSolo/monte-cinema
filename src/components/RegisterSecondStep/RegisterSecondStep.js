@@ -1,5 +1,4 @@
 import { useState } from "react";
-import moment from "moment";
 import RegisterStepTitle from "../RegisterStepTitle";
 import FormWrapper from "../FormWrapper";
 import Input from "../Input";
@@ -36,21 +35,29 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
 
   const handleDateOfBirthChange = (e) => {
     setDateOfBirthError((prev) => ({ ...prev, underage: true }));
+
+    const today = new Date();
+    const eighteenYearsAgo = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getUTCDate()
+    );
+    const birthday = new Date(e.target.value);
+
     if (
       e.target.value.length === 0 ||
-      !regex.dateOfBirth.test(e.target.value)
+      !regex.dateOfBirth.test(e.target.value) ||
+      birthday > today
     ) {
       setDateOfBirthError((prev) => ({
         ...prev,
-        format: "Please enter date in correct format",
+        format: "Please enter correct date",
       }));
     } else {
       setDateOfBirthError((prev) => ({ ...prev, format: "" }));
     }
-    const birthDay = moment(e.target.value, "DD/MM/YYYY");
-    const dateNow = moment();
-    const age = dateNow.diff(birthDay, "years");
-    if (age >= 18) {
+
+    if (birthday < eighteenYearsAgo) {
       setDateOfBirthError((prev) => ({ ...prev, underage: false }));
     }
     setNewUser((prev) => ({ ...prev, dateOfBirth: e.target.value }));
