@@ -10,10 +10,8 @@ const Input = ({
   id,
   name,
   placeholder,
-  pattern,
   value,
   onChange,
-  onBlur,
   children,
 }) => {
   return (
@@ -27,10 +25,8 @@ const Input = ({
         id={id}
         name={name}
         placeholder={placeholder}
-        pattern={pattern}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
       />
       {children}
     </div>
