@@ -17,25 +17,27 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
   });
   const [passwordType, setPasswordType] = useState("password");
 
-  const handleChange = (e) => {
-    setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    if ((e.target.name = "email")) {
-      if (e.target.value.length === 0 || !regex.email.test(e.target.value)) {
-        setEmailError("Please enter correct email address");
-      }
+  const handleEmailChange = (e) => {
+    if (e.target.value.length === 0 || !regex.email.test(e.target.value)) {
+      setEmailError("Please enter correct email address");
+    } else {
+      setEmailError("");
     }
-    if (e.target.name === "password") {
-      setPasswordError({ charNum: true, oneLetter: true, oneDigit: true });
-      if (e.target.value.length >= 8) {
-        setPasswordError((prev) => ({ ...prev, charNum: false }));
-      }
-      if (regex.passOneLetter.test(e.target.value)) {
-        setPasswordError((prev) => ({ ...prev, oneLetter: false }));
-      }
-      if (regex.passOneDigit.test(e.target.value)) {
-        setPasswordError((prev) => ({ ...prev, oneDigit: false }));
-      }
+    setNewUser((prev) => ({ ...prev, email: e.target.value }));
+  };
+
+  const handlePasswordChange = (e) => {
+    setPasswordError({ charNum: true, oneLetter: true, oneDigit: true });
+    if (e.target.value.length >= 8) {
+      setPasswordError((prev) => ({ ...prev, charNum: false }));
     }
+    if (regex.passOneLetter.test(e.target.value)) {
+      setPasswordError((prev) => ({ ...prev, oneLetter: false }));
+    }
+    if (regex.passOneDigit.test(e.target.value)) {
+      setPasswordError((prev) => ({ ...prev, oneDigit: false }));
+    }
+    setNewUser((prev) => ({ ...prev, password: e.target.value }));
   };
 
   const togglePasswordType = () => {
@@ -93,7 +95,7 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
             name="email"
             placeholder="email@monterail.com"
             value={newUser.email}
-            onChange={handleChange}
+            onChange={handleEmailChange}
           />
           <div className="email__error">{emailError}</div>
 
@@ -108,7 +110,7 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
             name="password"
             placeholder="Enter your password"
             value={newUser.password}
-            onChange={handleChange}
+            onChange={handlePasswordChange}
             children={
               <button
                 type="button"
