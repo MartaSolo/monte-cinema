@@ -63,6 +63,14 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
     }
   };
 
+  const divDateOfBirthClassName = (object) => {
+    if (Object.values(object).some((el) => el === true)) {
+      return "input dateofbirth error";
+    } else {
+      return "input dateofbirth";
+    }
+  };
+
   const dateOfBirthErrorClassName = (value) => {
     if (value === false) {
       return "dateofbirth__error correct";
@@ -130,7 +138,7 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
           <div className="surname__error">{surnameError}</div>
 
           <Input
-            divClassName="input dateofbirth"
+            divClassName={divDateOfBirthClassName(dateOfBirthError)}
             labelClassName="input__label dateofbirth"
             htmlFor="dateofbirth"
             label="Date of birth"

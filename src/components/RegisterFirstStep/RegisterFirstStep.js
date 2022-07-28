@@ -49,6 +49,14 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
       : setPasswordType("password");
   };
 
+  const divPasswordClassName = (object) => {
+    if (Object.values(object).some((el) => el === true)) {
+      return "input password error";
+    } else {
+      return "input password";
+    }
+  };
+
   const passErrorClassName = (value) => {
     if (value === false) {
       return "password__error correct";
@@ -96,7 +104,7 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
           <div className="email__error">{emailError}</div>
 
           <Input
-            divClassName="input password"
+            divClassName={divPasswordClassName(passwordError)}
             labelClassName="input__label password"
             htmlFor="password"
             label="password"

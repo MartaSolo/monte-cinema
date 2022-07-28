@@ -50,6 +50,12 @@
   }
 }
 
+.input.error {
+  .input__input {
+    border: 2px solid c.$colorAccentLight;
+  }
+}
+
 .input.privpolicy {
   flex-direction: row;
   padding-bottom: 20px;
