@@ -194,7 +194,7 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
             onClick={() => setStep((prev) => prev + 1)}
             disabled={disableButton()}
           />
-          <Anchor href="#" className="anchor toLogin" text="Log in instead" />
+          <Anchor href="#" className="anchor login" text="Log in instead" />
         </div>
       </FormWrapper>
     </div>
