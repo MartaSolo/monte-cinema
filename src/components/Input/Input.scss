@@ -64,6 +64,10 @@
   }
 }
 
+.input__input.dateofbirth::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
 .input.privpolicy {
   flex-direction: row;
   padding-bottom: 20px;

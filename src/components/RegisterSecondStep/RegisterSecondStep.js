@@ -44,11 +44,7 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
     );
     const birthday = new Date(e.target.value);
 
-    if (
-      e.target.value.length === 0 ||
-      !regex.dateOfBirth.test(e.target.value) ||
-      birthday > today
-    ) {
+    if (e.target.value.length === 0 || birthday > today) {
       setDateOfBirthError((prev) => ({
         ...prev,
         format: "Please enter correct date",
@@ -149,6 +145,7 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
             placeholder="DD/MM/YYYY"
             value={newUser.dateOfBirth}
             onChange={handleDateOfBirthChange}
+            onFocus={(e) => (e.target.type = "date")}
           />
           <div className="dateofbirth__errors">
             <p className={dateOfBirthErrorClassName(dateOfBirthError.underage)}>
