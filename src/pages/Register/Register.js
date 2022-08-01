@@ -16,12 +16,18 @@ const Register = () => {
     privPolicy: false,
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // send form data to the API
+    setStep((prev) => prev + 1);
+  };
+
   return (
     <>
       <Header />
       <div className="register">
         <div className="container">
-          <form className="register__form">
+          <form className="register__form" onSubmit={handleSubmit}>
             <div className="register__step">
               {step === 1 && (
                 <RegisterFirstStep

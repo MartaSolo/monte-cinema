@@ -189,9 +189,8 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
         <div className="buttons">
           <Button
             className="button next"
-            type="button"
+            type="submit"
             text="Next step"
-            onClick={() => setStep((prev) => prev + 1)}
             disabled={disableButton()}
           />
           <Anchor href="#" className="anchor login" text="Log in instead" />
