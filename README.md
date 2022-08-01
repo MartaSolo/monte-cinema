@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Used technologies:
 
-HTML5, CSS3, Sass, JavaScript (ES6), Moment JS, React v18.
+HTML5, CSS3, Sass, JavaScript (ES6), React v18.
 
 ## View Demo:
 
