@@ -17,36 +17,41 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
   });
   const [passwordType, setPasswordType] = useState("password");
 
-  const handleChange = (e) => {
-    setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    if (e.target.value !== "") {
+  const handleEmailChange = (e) => {
+    if (e.target.value.length === 0 || !regex.email.test(e.target.value)) {
+      setEmailError("Please enter correct email address");
+    } else {
       setEmailError("");
     }
+    setNewUser((prev) => ({ ...prev, email: e.target.value }));
   };
 
-  const handleEmailBlur = () => {
-    if (newUser.email.length === 0 || !regex.email.test(newUser.email)) {
-      setEmailError("Please enter correct email address");
-    }
-  };
-
-  const handlePasswordBlur = () => {
+  const handlePasswordChange = (e) => {
     setPasswordError({ charNum: true, oneLetter: true, oneDigit: true });
-    if (newUser.password.length >= 8) {
+    if (e.target.value.length >= 8) {
       setPasswordError((prev) => ({ ...prev, charNum: false }));
     }
-    if (regex.passOneLetter.test(newUser.password)) {
+    if (regex.passOneLetter.test(e.target.value)) {
       setPasswordError((prev) => ({ ...prev, oneLetter: false }));
     }
-    if (regex.passOneDigit.test(newUser.password)) {
+    if (regex.passOneDigit.test(e.target.value)) {
       setPasswordError((prev) => ({ ...prev, oneDigit: false }));
     }
+    setNewUser((prev) => ({ ...prev, password: e.target.value }));
   };
 
   const togglePasswordType = () => {
     return passwordType === "password"
       ? setPasswordType("text")
       : setPasswordType("password");
+  };
+
+  const divPasswordClassName = (object) => {
+    if (Object.values(object).some((el) => el === true)) {
+      return "input password error";
+    } else {
+      return "input password";
+    }
   };
 
   const passErrorClassName = (value) => {
@@ -90,13 +95,12 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
             name="email"
             placeholder="email@monterail.com"
             value={newUser.email}
-            onChange={handleChange}
-            onBlur={handleEmailBlur}
+            onChange={handleEmailChange}
           />
           <div className="email__error">{emailError}</div>
 
           <Input
-            divClassName="input password"
+            divClassName={divPasswordClassName(passwordError)}
             labelClassName="input__label password"
             htmlFor="password"
             label="password"
@@ -106,9 +110,16 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
             name="password"
             placeholder="Enter your password"
             value={newUser.password}
-            onChange={handleChange}
-            onBlur={handlePasswordBlur}
-            children={<EyeIcon onClick={togglePasswordType} />}
+            onChange={handlePasswordChange}
+            children={
+              <button
+                type="button"
+                className="password__button"
+                onClick={togglePasswordType}
+              >
+                <EyeIcon />
+              </button>
+            }
           />
           <div className="password__errors">
             <p className={passErrorClassName(passwordError.charNum)}>
@@ -130,7 +141,7 @@ const RegisterFirstStep = ({ setStep, newUser, setNewUser }) => {
             onClick={() => setStep((prev) => prev + 1)}
             disabled={disableButton()}
           />
-          <Anchor href="#" className="anchor toLogin" text="Log in instead" />
+          <Anchor href="#" className="anchor login" text="Log in instead" />
         </div>
       </FormWrapper>
     </div>

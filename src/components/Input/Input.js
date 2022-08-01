@@ -10,10 +10,9 @@ const Input = ({
   id,
   name,
   placeholder,
-  pattern,
   value,
   onChange,
-  onBlur,
+  onFocus,
   children,
 }) => {
   return (
@@ -27,10 +26,9 @@ const Input = ({
         id={id}
         name={name}
         placeholder={placeholder}
-        pattern={pattern}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
+        onFocus={onFocus}
       />
       {children}
     </div>
@@ -38,3 +36,40 @@ const Input = ({
 };
 
 export default Input;
+
+// import "./Input.scss";
+
+// const Input = ({
+//   divClassName,
+//   labelClassName,
+//   htmlFor,
+//   label,
+//   inputClassName,
+//   inputType,
+//   id,
+//   name,
+//   placeholder,
+//   value,
+//   onChange,
+//   children,
+// }) => {
+//   return (
+//     <div className={divClassName}>
+//       <label className={labelClassName} htmlFor={htmlFor}>
+//         {label}
+//       </label>
+//       <input
+//         className={inputClassName}
+//         type={inputType}
+//         id={id}
+//         name={name}
+//         placeholder={placeholder}
+//         value={value}
+//         onChange={onChange}
+//       />
+//       {children}
+//     </div>
+//   );
+// };
+
+// export default Input;

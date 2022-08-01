@@ -1,5 +1,4 @@
 import { useState } from "react";
-import moment from "moment";
 import RegisterStepTitle from "../RegisterStepTitle";
 import FormWrapper from "../FormWrapper";
 import Input from "../Input";
@@ -16,57 +15,64 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
     format: "",
   });
 
-  const handleChange = (e) => {
-    setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    if (e.target.name === "privPolicy") {
-      setNewUser((prev) => ({ ...prev, privPolicy: e.target.checked }));
-    }
-    if (e.target.name === "name" && e.target.value !== "") {
-      setNameError("");
-    }
-    if (e.target.name === "surname" && e.target.value !== "") {
-      setSurnameError("");
-    }
-    if (e.target.name === "dateOfBirth" && e.target.value !== "") {
-      setDateOfBirthError((prev) => ({ ...prev, format: "" }));
-    }
-  };
-
-  const handleNameBlur = () => {
+  const handleNameChange = (e) => {
     if (!regex.name.test(newUser.name)) {
       setNameError("Please enter correct first name");
+    } else {
+      setNameError("");
     }
+    setNewUser((prev) => ({ ...prev, name: e.target.value }));
   };
 
-  const handleSurnameBlur = () => {
+  const handleSurnameChange = (e) => {
     if (!regex.name.test(newUser.surname)) {
       setSurnameError("Please enter correct last name");
+    } else {
+      setSurnameError("");
     }
+    setNewUser((prev) => ({ ...prev, surname: e.target.value }));
   };
 
-  const handleDateOfBirthBlur = () => {
+  const handleDateOfBirthChange = (e) => {
     setDateOfBirthError((prev) => ({ ...prev, underage: true }));
-    if (
-      newUser.dateOfBirth.length === 0 ||
-      !regex.dateOfBirth.test(newUser.dateOfBirth)
-    ) {
+
+    const today = new Date();
+    const eighteenYearsAgo = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getUTCDate()
+    );
+    const birthday = new Date(e.target.value);
+
+    if (e.target.value.length === 0 || birthday > today) {
       setDateOfBirthError((prev) => ({
         ...prev,
-        format: "Please enter date in correct format",
+        format: "Please enter correct date",
       }));
+    } else {
+      setDateOfBirthError((prev) => ({ ...prev, format: "" }));
     }
-    const birthDay = moment(newUser.dateOfBirth, "DD/MM/YYYY");
-    const dateNow = moment();
-    const age = dateNow.diff(birthDay, "years");
-    if (age >= 18) {
+
+    if (birthday < eighteenYearsAgo) {
       setDateOfBirthError((prev) => ({ ...prev, underage: false }));
     }
+    setNewUser((prev) => ({ ...prev, dateOfBirth: e.target.value }));
+  };
+
+  const handlePrivPolicyChange = (e) => {
+    setNewUser((prev) => ({ ...prev, privPolicy: e.target.checked }));
+  };
+
+  const divDateOfBirthClassName = (object) => {
+    return Object.values(object).some((el) => el === true)
+      ? "input dateofbirth error"
+      : "input dateofbirth";
   };
 
   const dateOfBirthErrorClassName = (value) => {
-    if (value === false) {
+    if (!value) {
       return "dateofbirth__error correct";
-    } else if (value === true) {
+    } else if (value) {
       return "dateofbirth__error error";
     } else {
       return "dateofbirth__error";
@@ -106,8 +112,7 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
             name="name"
             placeholder="e.g. Jessica"
             value={newUser.name}
-            onChange={handleChange}
-            onBlur={handleNameBlur}
+            onChange={handleNameChange}
           />
           <div className="name__error">{nameError}</div>
 
@@ -124,13 +129,12 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
             name="surname"
             placeholder="e.g. Walton"
             value={newUser.surname}
-            onChange={handleChange}
-            onBlur={handleSurnameBlur}
+            onChange={handleSurnameChange}
           />
           <div className="surname__error">{surnameError}</div>
 
           <Input
-            divClassName="input dateofbirth"
+            divClassName={divDateOfBirthClassName(dateOfBirthError)}
             labelClassName="input__label dateofbirth"
             htmlFor="dateofbirth"
             label="Date of birth"
@@ -139,10 +143,9 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
             id="dateofbirth"
             name="dateOfBirth"
             placeholder="DD/MM/YYYY"
-            pattern={regex.dateOfBirth}
             value={newUser.dateOfBirth}
-            onChange={handleChange}
-            onBlur={handleDateOfBirthBlur}
+            onChange={handleDateOfBirthChange}
+            onFocus={(e) => (e.target.type = "date")}
           />
           <div className="dateofbirth__errors">
             <p className={dateOfBirthErrorClassName(dateOfBirthError.underage)}>
@@ -179,19 +182,18 @@ const RegisterSecondStep = ({ setStep, newUser, setNewUser }) => {
             id="privpolicy"
             name="privPolicy"
             value={newUser.privPolicy}
-            onChange={handleChange}
+            onChange={handlePrivPolicyChange}
           />
         </div>
 
         <div className="buttons">
           <Button
             className="button next"
-            type="button"
+            type="submit"
             text="Next step"
-            onClick={() => setStep((prev) => prev + 1)}
             disabled={disableButton()}
           />
-          <Anchor href="#" className="anchor toLogin" text="Log in instead" />
+          <Anchor href="#" className="anchor login" text="Log in instead" />
         </div>
       </FormWrapper>
     </div>

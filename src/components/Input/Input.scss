@@ -15,6 +15,7 @@
     padding: 8px 0 8px 0;
   }
   .input__input {
+    font-family: f.$fontPrimary;
     height: 56px;
     border-radius: 8px;
     background-color: c.$colorInputBackground;
@@ -31,6 +32,12 @@
   }
 }
 
+.input.error {
+  .input__input {
+    border: 2px solid c.$colorAccentLight;
+  }
+}
+
 .input.email,
 .input.name,
 .input.surname {
@@ -42,11 +49,23 @@
 
 .input.password {
   position: relative;
-  svg {
+  .password__button {
+    cursor: pointer;
+    width: 44px;
+    height: 50px;
+    background-color: transparent;
     position: absolute;
-    top: 50%;
-    right: 5%;
+    top: 41%;
+    right: 3%;
+    border: none;
+    svg {
+      transform: translate(0%, 10%);
+    }
   }
+}
+
+.input__input.dateofbirth::-webkit-calendar-picker-indicator {
+  cursor: pointer;
 }
 
 .input.privpolicy {
@@ -60,6 +79,7 @@
     text-transform: none;
     position: relative;
     margin-left: 40px;
+    cursor: pointer;
     &::before {
       content: "";
       display: block;

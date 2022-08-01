@@ -4,7 +4,6 @@ const regex = {
   passOneLetter: /[a-zA-Z]/,
   passOneDigit: /\d/,
   name: /^(?!.* .* )[a-zA-Z ]{2,25}$/,
-  dateOfBirth: /^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)\d\d$/,
 };
 
 export default regex;
